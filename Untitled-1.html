@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Классная работа</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: #060309;
+    color: #e3daf5;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  .screen-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 200vh;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  body.view-library .screen-wrapper {
+    transform: translateY(-100vh);
+  }
+  .page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0b0713;
+  }
+  header {
+    background: linear-gradient(180deg, #160d29 0%, #10091f 100%);
+    border-bottom: 3px solid #2d1654;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+  .nav-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #a370f7;
+    text-transform: uppercase;
+  }
+  .nav-menu {
+    display: flex;
+    gap: 15px;
+  }
+  .nav-item {
+    background: #1c0f35;
+    border: 2px solid #522b94;
+    color: #c1a2f7;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .nav-item:hover, .nav-item.active {
+    background: #7c3aed;
+    border-color: #a78bfa;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+    transform: translateY(-2px);
+  }
+  footer {
+    background: linear-gradient(0deg, #10091f 0%, #160d29 100%);
+    border-top: 3px solid #2d1654;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #8452d9;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+  }
+  main {
+    flex: 1;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow: hidden;
+  }
+  .profile-top {
+    display: flex;
+    gap: 30px;
+    height: 180px;
+  }
+  .avatar-block {
+    width: 180px;
+    background-color: #140d24;
+    background-image: url('загружено.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #6333b0;
+    border-radius: 12px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    transition: border-color 0.3s ease;
+  }
+  .avatar-block:hover {
+    border-color: #9046fe;
+  }
+  .status-block {
+    flex: 1;
+    background-color: #140d24;
+    border: 3px solid #6333b0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: #c1a2f7;
+    padding: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    transition: border-color 0.3s ease;
+  }
+  .status-block:hover {
+    border-color: #9046fe;
+  }
+  .biography-block {
+    flex: 1;
+    background-color: #140d24;
+    border: 3px solid #6333b0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e3daf5;
+    padding: 40px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    transition: border-color 0.3s ease;
+  }
+  .biography-block:hover {
+    border-color: #9046fe;
+  }
+  .library-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .shelf-top {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+  }
+  .book-card {
+    flex: 1;
+    background-color: #140d24;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #6333b0;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .book-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #9046fe;
+    box-shadow: 0 15px 30px rgba(144, 70, 254, 0.25);
+  }
+</style>
+</head>
+<body>
+
+<div class="screen-wrapper">
+  
+  <div class="page">
+    <header>
+      <div class="nav-title">Навигация</div>
+      <div class="nav-menu">
+        <button class="nav-item active" onclick="toPage('main')">Главная страница</button>
+        <button class="nav-item" onclick="toPage('library')">Библиотека</button>
+      </div>
+    </header>
+    <main>
+      <div class="profile-top">
+        <div class="avatar-block"></div>
+        <div class="status-block">reggie</div>
+      </div>
+      <div class="biography-block">
+        Iso (real name Li Zhao Yu) is a Duelist agent in VALORANT hailing from Chongqing, China. Introduced in Episode 7: Act III, he is a fixer and lethal hitman who reconfigures ambient radianite energy into tactical utility and bulletproof shields. Because his kit entirely focuses on gunplay and raw aim rather than movement mechanics, he is a premier pick for players confident in winning isolated firefights.
+      </div>
+    </main>
+  </div>
+
+  <div class="page">
+    <header>
+      <div class="nav-title">Библиотека</div>
+      <div class="nav-menu">
+        <button class="nav-item" onclick="toPage('main')">Главная страница</button>
+        <button class="nav-item active" onclick="toPage('library')">Библиотека</button>
+      </div>
+    </header>
+    <main class="library-layout">
+      <div class="shelf-top">
+        <div class="book-card" style="background-image: url('MV5BYzU3NDM4ZjgtY2UyMi00YTczLTgyNDEtMjBiMDJlOGUxNjcxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="book-card" style="background-image: url('MV5BMzAwNDIzMzEtZDZkNC00ZDQ4LTk3ZDMtZjVhMTU2YzgzZTZiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg');"></div>
+        <div class="book-card" style="background-image: url('MV5BMzJhYWEyMWUtZDYwNS00NTU4LTgwODItYjBlNzEwMTc5MTc2XkEyXkFqcGc@._V1_.jpg');"></div>
+        <div class="book-card" style="background-image: url('MV5BNDBiMzMyMWItNDFkYy00MjBmLTk2ZDAtYmE2N2U4YzFlZDRmXkEyXkFqcGc@._V1_.jpg');"></div>
+      </div>
+    </main>
+    <footer>+7 676 952 1488</footer>
+  </div>
+
+</div>
+
+<script>
+  function toPage(pageId) {
+    if (pageId === 'library') {
+      document.body.classList.add('view-library');
+    } else {
+      document.body.classList.remove('view-library');
+    }
+  }
+</script>
+
+</body>
+</html>
